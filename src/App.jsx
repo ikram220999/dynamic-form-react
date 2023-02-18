@@ -7,26 +7,33 @@ const App = () => {
     "password"
   ];
 
+
   const [data, setData] = useState({
     name: "",
     email: "",
     password: ""
   })
 
+  console.log("data", data)
+
+  const handleInput = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <>
-
-      <div>
-        {input ? input.map((data, id) => {
-          return (
-            <>
-              <input name={data} placeholder={data}></input>
-              <br></br>
-            </>
-          )
-        }) : ""}
-
-      </div>
+      {input ? input.map((data, id) =>
+      (
+        <>
+          <input key={id} name={data} placeholder={data} className="mb-2"
+            onChange={handleInput}
+          ></input> <br />
+        </>
+      )
+      ) : ""}
     </>
   )
 }
